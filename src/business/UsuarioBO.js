@@ -51,10 +51,13 @@ const UsuarioBO = {
   async deleteUsuario(id) {
     if(id !== null && id != undefined) {
       const result = await Usuario.deleteUsuario(id);
-      return  {
-        data: result,
-        msg: Utils.getMessage("Usuário excluido com sucesso!").msg
-      }; 
+      if(result) 
+        return  {
+          data: result,
+          msg: Utils.getMessage("Usuário excluido com sucesso!").msg
+        }; 
+      else 
+        return Utils.getMessage("Usuário inexistente!")
     }
     return Utils.getMessage("Campo id não informado")
   },
