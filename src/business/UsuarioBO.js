@@ -40,6 +40,14 @@ const UsuarioBO = {
     return Utils.getMessage("Campo id não informado!");
   },
 
+  async getUsuarios() {
+    const users = await Usuario.findAll();
+    if(users.length > 0) 
+      return users;
+    else 
+      return Utils.getMessage("Nenhum usuário encontrado!");
+  },
+
   validaCamposCriarUsuario(campos) {
     const { usuario, nome, email } = campos;
     const isCamposValidos = Utils.validaCampos([usuario, nome, email]);
