@@ -21,8 +21,8 @@ const UsuarioBO = {
             return Utils.getMessage("Usuário inexistente!");
           }
         } else { 
-          return await {
-            data: Usuario.createUsuario(usuarioRequest),
+          return  {
+            data: await Usuario.createUsuario(usuarioRequest),
             msg: Utils.getMessage("Usuário cadastrado com sucesso!").msg
           }; 
         }
