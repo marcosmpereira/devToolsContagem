@@ -26,9 +26,9 @@ module.exports = {
   },
 
   async deleteUsuario(id) {
-      let query = `DELETE tb_usuario WHERE tb_usuario.id = $1 `;
+      let query = `DELETE FROM tb_usuario WHERE tb_usuario.id = $1 RETURNING *`;
       const result = await db.query(query, [id]);
-      return result;
+      return result.rows[0];
   },
 
   async updateUsuario(usuarioRequest) {
