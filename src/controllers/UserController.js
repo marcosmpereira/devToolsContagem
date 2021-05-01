@@ -13,7 +13,12 @@ module.exports = {
 
   async getUsuarioById(req, res) {
     const { userId } = req.params;
-    const result =  await userBO.getUsuario(userId);
+    const result =  await usuarioBO.getUsuario(userId);
+    return res.json(result);
+  },
+
+  async getUsuarios(req, res) {
+    const result =  await usuarioBO.getUsuarios()
     return res.json(result);
   }
 }
