@@ -26,13 +26,13 @@ module.exports = {
   },
 
   async deleteUsuario(id) {
-      let query = `DELETE tb_usuario WHERE tb_usuario.id = $1`;
+      let query = `DELETE tb_usuario WHERE tb_usuario.id = $1 `;
       const result = await db.query(query, [id]);
       return result;
   },
 
-  async alterUsuario(usuarioRequest) {
-    const { id, usuario, nome, email, skype, discord, telefone } = usuario;
+  async updateUsuario(usuarioRequest) {
+    const { id, usuario, nome, email, skype, discord, telefone } = usuarioRequest;
     let query = `
       UPDATE tb_usuario
       SET usuario = $1,
@@ -42,8 +42,9 @@ module.exports = {
           discord = $5,
           telefone = $6
       WHERE tb_usuario.id = $7
+      RETURNING *
     `;
     const result = await db.query(query,[usuario, nome, email, skype, discord, telefone, id]);
-    return result;
+    return result.rows[0];
   }
 }
