@@ -11,6 +11,11 @@ module.exports = {
     return res.json(result);
   },
 
+  async deleteUsuario(req, res) {
+    const result = await usuarioBO.deleteUsuario(req.params.userId);
+    return res.json(result);
+  },
+
   async getUsuarioById(req, res) {
     const { userId } = req.params;
     const result =  await usuarioBO.getUsuario(userId);
