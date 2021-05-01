@@ -48,6 +48,17 @@ const UsuarioBO = {
       return Utils.getMessage("Nenhum usuário encontrado!");
   },
 
+  async deleteUsuario(id) {
+    if(id !== null && id != undefined) {
+      const result = await Usuario.deleteUsuario(id);
+      return  {
+        data: result,
+        msg: Utils.getMessage("Usuário excluido com sucesso!").msg
+      }; 
+    }
+    return Utils.getMessage("Campo id não informado")
+  },
+
   validaCamposCriarUsuario(campos) {
     const { usuario, nome, email } = campos;
     const isCamposValidos = Utils.validaCampos([usuario, nome, email]);
